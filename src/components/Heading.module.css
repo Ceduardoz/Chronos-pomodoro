@@ -1,7 +1,6 @@
 .heading{
-  background-color: royalblue;
-}
-
-.cyan {
-  color: cyan;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2.4rem;
 }

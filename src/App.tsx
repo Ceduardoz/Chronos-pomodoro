@@ -1,4 +1,4 @@
-import { Heading } from "./components/Heading";
+import { BoltIcon, CirclePlay, CirclePlayIcon, HouseIcon, MoonIcon, PlayIcon, SunIcon, TableConfigIcon, TimerIcon, TimerResetIcon } from "lucide-react";
 
 import "./styles/global.css";
 import "./styles/theme.css";
@@ -6,8 +6,39 @@ import "./styles/theme.css";
 export function App(){
   return (
     <>
-      <Heading />
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Assumenda doloremque repellendus, rem accusantium perferendis dolorum, doloribus magni ducimus velit repellat, odio consequuntur nemo facere soluta facilis? Cum perspiciatis id unde?</p>
+      <div className="container">
+        <div className="content">
+          <header>
+            <button>
+              <TimerIcon/>
+              Chronos
+            </button>
+          </header>
+          <nav>
+              <button>
+                <HouseIcon/>
+              </button>
+              <button>
+                <TimerResetIcon/>
+              </button>
+              <button>
+                <BoltIcon />
+              </button>
+              <button>
+                <SunIcon/>
+              </button>
+          </nav>
+          <section className="timer"></section>
+          <div className="task">
+            <p>task</p>
+            <input type="text" placeholder="Ex: estudar para prova"/>
+            <p>Nesse inicio <strong>foque</strong> por <strong>25 min.</strong></p>
+            <button>
+              <CirclePlayIcon/>
+            </button>
+          </div>
+        </div>
+      </div>
     </>
   );
 }
