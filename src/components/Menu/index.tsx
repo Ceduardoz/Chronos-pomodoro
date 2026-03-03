@@ -11,7 +11,7 @@ import { useState, useEffect } from "react";
 type AvaliableTheme = "dark" | "light";
 
 export default function Menu() {
-  const [theme, setTheme] = useState<AvaliableTheme>(() => {
+  const [theme, setTheme] = useState<AvaliableTheme>(() => {  
     const storageTheme =
       (localStorage.getItem("theme") as AvaliableTheme) || "dark";
     return storageTheme;
