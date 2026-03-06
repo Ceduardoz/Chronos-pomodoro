@@ -1,6 +1,9 @@
 import { useState } from "react";
-import type { TaskStateModel } from "./models/TaskStateModel";
+
 import Home from "./pages/Home";
+
+import type { TaskStateModel } from "./models/TaskStateModel";
+import { TaskContext, TaskContextProvider } from "./contexts/TaskContext";
 
 import "./styles/global.css";
 import "./styles/theme.css";
@@ -20,10 +23,11 @@ const initialState: TaskStateModel = {
 
 export function App() {
   const [state, setState] = useState(initialState);
-
   return (
     <>
-      <Home state={state} setState={setState} />
+      <TaskContextProvider value={{ outracoisa: 321 }}>
+        <Home />
+      </TaskContextProvider>
     </>
   );
 }
