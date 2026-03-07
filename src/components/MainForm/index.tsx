@@ -3,17 +3,25 @@ import { PlayCircleIcon } from "lucide-react";
 import DefaultInput from "../DefaultInput";
 import DefaultButton from "../DefaultButton";
 import Cycles from "../Cycles";
+import { useRef } from "react";
 
 export default function MainForm() {
+  const taskName = useRef<HTMLInputElement>(null);
+
+  function handleCreateNewTask(e: React.FormEvent<HTMLFormElement>) {
+    e.preventDefault();
+    console.log(taskName);
+  }
+
   return (
-    <form action="" className="form">
+    <form onSubmit={handleCreateNewTask} className="form">
       <div className="formRow">
         <DefaultInput
           labelText="task"
           id="task"
           type="text"
           placeholder="Digite a tarefa"
-          defaultValue="Valor Preenchido"
+          ref={taskName}
         />
       </div>
 
