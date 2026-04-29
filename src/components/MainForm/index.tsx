@@ -4,13 +4,49 @@ import DefaultInput from "../DefaultInput";
 import DefaultButton from "../DefaultButton";
 import Cycles from "../Cycles";
 import { useRef } from "react";
+import type { TaskModel } from "../../models/taksModel";
+import { useTaskContext } from "../../contexts/TaskContext/useTaskContext";
 
 export default function MainForm() {
-  const taskName = useRef<HTMLInputElement>(null);
+  const { setState } = useTaskContext();
+  const taskNameInput = useRef<HTMLInputElement>(null);
 
   function handleCreateNewTask(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
-    console.log(taskName);
+    if (taskNameInput.current === null) return;
+
+    const taskName = taskNameInput.current.value.trim();
+
+    if (!taskName) {
+      alert("Please enter a task name.");
+      return;
+    }
+
+    const newTask: TaskModel = {
+      id: Date.now().toString(),
+      name: taskName,
+      startDate: Date.now(),
+      completeDate: null,
+      interruptDate: null,
+      duration: 1,
+      type: "worktime",
+    };
+
+    const secondsRemaining = newTask.duration * 60;
+
+    setState(prev => {
+      return {
+        ...prev,
+        config: {
+          ...prev.config,
+        },
+        activeTasks: newTask,
+        currentCycle: 1,
+        secondsRemaining,
+        formattedSecondsRemaining: "00:00",
+        tasks: [...prev.tasks, newTask],
+      };
+    });
   }
 
   return (
@@ -21,7 +57,7 @@ export default function MainForm() {
           id="task"
           type="text"
           placeholder="Digite a tarefa"
-          ref={taskName}
+          ref={taskNameInput}
         />
       </div>
 
